@@ -88,8 +88,8 @@ public class ResolverTest {
     }
 
     JsonObject apiJson = new JsonObject(vertx.fileSystem().readFileBlocking("resolve/api.json"));
-    JsonObject apiResolved = new JsonObject(vertx.fileSystem().readFileBlocking("resolve/api_resolved_by_object.json"));
-    assertThat(repository.resolve(apiJson)).isEqualTo(apiResolved);
+    JsonObject apiResolved = new JsonObject(vertx.fileSystem().readFileBlocking("resolve/api_resolved.json"));
+    assertThat(new JsonObject(repository.resolve(apiJson).encode())).isEqualTo(apiResolved);
   }
 
   @Test
@@ -104,7 +104,7 @@ public class ResolverTest {
     }
 
     JsonObject apiResolved = new JsonObject(vertx.fileSystem().readFileBlocking("resolve/api_resolved_by_ref.json"));
-    assertThat(repository.resolve("api.json")).isEqualTo(apiResolved);
+    assertThat(repository.resolve("api.json")).containsExactlyInAnyOrderElementsOf(apiResolved);
   }
 
   @Test
