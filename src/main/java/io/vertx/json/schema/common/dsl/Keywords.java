@@ -29,6 +29,10 @@ public class Keywords {
     return new NumberKeyword("multipleOf", multipleOf);
   }
 
+  public static StringKeyword format(StringFormat format) {
+    return new StringKeyword("format", format.getName());
+  }
+
   public static StringKeyword maxLength(int maxLength) {
     return new StringKeyword("maxLength", maxLength);
   }
